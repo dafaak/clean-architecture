@@ -1,5 +1,5 @@
 import { AuthDataSource } from "../../domain/datasources/auth.datasource";
-import { CustomError, RegisterUserDto, UserEntity } from "../../domain";
+import { CustomError, LoginUserDto, RegisterUserDto, UserEntity } from "../../domain";
 import { UserModel } from "../../data/mongodb";
 import { BcryptAdapter } from "../../config";
 import { UsserMapper } from "../mappers/usser.mapper";
@@ -43,13 +43,36 @@ export class AuthMongoDatasource implements AuthDataSource {
 
     } catch (error) {
 
-      if (error instanceof CustomError) {
-        throw error;
-      }
+      if (error instanceof CustomError) throw error;
 
       throw CustomError.internalServer()
 
     }
+  }
+
+
+  async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
+
+    try {
+      const exists = await UserModel.findOne({email: loginUserDto.email});
+
+      if (!exists) throw CustomError.badRequest('Verify your credentials');
+
+      const passwordMatch = this.comparePassword(loginUserDto.password, exists.password);
+
+      if (!passwordMatch) throw CustomError.badRequest('Verify your credentials');
+
+      return this.userMapper(exists);
+
+
+    } catch (error) {
+
+      if (error instanceof CustomError) throw error;
+
+      throw CustomError.internalServer();
+    }
+
+
   }
 
 }
