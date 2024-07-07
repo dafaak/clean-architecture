@@ -1,4 +1,4 @@
 export * from "./validators"
 export * from "./envs"
-export * from "./bcrypt.adapter"
-export * from "./jwtAdapter"
+export * from "./adapters/bcrypt.adapter"
+export * from "./adapters/jwtAdapter"
