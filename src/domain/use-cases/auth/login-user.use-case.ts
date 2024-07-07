@@ -2,23 +2,12 @@ import { LoginUserDto } from "../../dtos/auth/login-user.dto";
 import { AuthRepository } from "../../repositories/auth.repository";
 import { CustomError } from "../../errors/custom.error";
 import { JwtAdapter } from "../../../config";
-
-interface UserToken {
-  token: string
-  user: {
-    id: string
-    name: string
-    email: string
-  }
-}
+import { UserToken } from "../../../interfaces";
+import { GenerateTokenFunction } from "../../../types";
 
 interface LoginUserUseCase {
   execute(loginUserDto: LoginUserDto): Promise<UserToken>
 }
-
-type GenerateTokenFunction = (payload: Object, duration: string) => Promise<string | null>;
-
-type CompareFunction = (password: string, hashed: string) => boolean;
 
 export class LoginUser implements LoginUserUseCase {
 

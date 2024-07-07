@@ -1,0 +1,1 @@
+export type GenerateTokenFunction = (payload: Object, duration: string) => Promise<string | null>;

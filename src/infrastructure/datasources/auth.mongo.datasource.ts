@@ -3,10 +3,8 @@ import { CustomError, LoginUserDto, RegisterUserDto, UserEntity } from "../../do
 import { UserModel } from "../../data/mongodb";
 import { BcryptAdapter } from "../../config";
 import { UsserMapper } from "../mappers/usser.mapper";
+import { CompareFunction, HashFunction, MapperFunction } from "../../types";
 
-type HashFunction = (password: string) => string;
-type CompareFunction = (password: string, hashed: string) => boolean;
-type MapperFunction = (object: { [key: string]: any }) => UserEntity;
 
 export class AuthMongoDatasource implements AuthDataSource {
 

@@ -1,0 +1,1 @@
+export type CompareFunction = (password: string, hashed: string) => boolean;

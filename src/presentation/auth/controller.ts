@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { AuthRepository, CustomError, LoginUserDto, RegisterUser, RegisterUserDto } from "../../domain";
+import { AuthRepository, CustomError, LoginUserDto, RegisterUser, RegisterUserDto , LoginUser} from "../../domain";
 import { UserModel } from "../../data/mongodb";
-import { LoginUser } from "../../domain/use-cases/auth/login-user.use-case";
 
 export class AuthController {
 

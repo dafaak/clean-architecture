@@ -2,21 +2,12 @@ import { RegisterUserDto } from "../../dtos/auth/register-user.dto";
 import { AuthRepository } from "../../repositories/auth.repository";
 import { JwtAdapter } from "../../../config";
 import { CustomError } from "../../errors/custom.error";
-
-interface UserToken {
-  token: string
-  user: {
-    id: string
-    name: string
-    email: string
-  }
-}
+import { UserToken } from "../../../interfaces";
+import { GenerateTokenFunction } from "../../../types";
 
 interface RegisterUserUseCase {
   execute(registerUserDto: RegisterUserDto): Promise<UserToken>
 }
-
-type GenerateTokenFunction = (payload: Object, duration: string) => Promise<string | null>;
 
 export class RegisterUser implements RegisterUserUseCase {
 
