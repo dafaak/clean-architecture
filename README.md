@@ -44,3 +44,8 @@ el código del dominio no debe tener dependencias externas.
 
 Es en donde se crean las implementaciones respectivas de data spurces, repositorios, mappers.
 Sirve como punto intermedio
+
+### GENERAR SEED
+```
+openssl rand -hex 32
+```
